@@ -23,7 +23,7 @@ on:
 
         - name: Upload JUnit test reports
       if: always()
-       uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v4
       with:
         name: junit-test-results
         path: target/surefire-reports
@@ -93,7 +93,7 @@ on:
         - uses: actions/checkout@v4
           name: Set up Docker Buildx 
            docker/setup-buildx-action@v3
-         steps:
+    steps:
               - name: Log in to Docker Hub
                 uses: docker/login-action@v3
                 with:
@@ -107,4 +107,4 @@ on:
                     context: .
                     file: ./Dockerfile
                     push: true
-                    tags: -${{ secrets.DOCKERHUB_USERNAME }}/task-app: latest
+     tags: ${{ secrets.DOCKERHUB_USERNAME }}/task-app:latest
