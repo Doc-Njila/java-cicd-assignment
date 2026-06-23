@@ -48,7 +48,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
-            <!-- JaCoCo: generates a coverage report under target/site/jacoco -->
+            #<!-- JaCoCo: generates a coverage report under target/site/jacoco -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>

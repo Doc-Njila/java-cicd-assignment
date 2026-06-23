@@ -1,0 +1,35 @@
+name: Java-CICD-pipeline
+
+on: 
+  push:
+    branches: [ master ] 
+    
+jobs:
+  build-test: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: check out code
+        uses: actions/checkout  
+
+      - name: set up jdk 17
+        uses: actions/setup-java@v4
+        with:
+           distribution: 'temurin'
+          java-version: '21'
+          cache: 'maven'
+
+      - name: Build
+        run: mvn -B verify
+      
+      - name: Run tests
+        run: mvn -B test
+
+      - name: Upload JUnit test reports
+  if: always()
+  uses: actions/upload-artifact@v4
+  with:
+    name: junit-test-results
+    path: target/surefire-reports 
+
+
+    
