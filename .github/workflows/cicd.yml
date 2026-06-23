@@ -68,7 +68,7 @@ on:
 
           steps:
             - name: Run Checkstyle
-          run: mvn -B checkstyle: check
+          run: mvn -B checkstyle:check
 
           jobs:
             build:
