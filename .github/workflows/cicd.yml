@@ -23,7 +23,7 @@ on:
 
         - name: Upload JUnit test reports
       if: always()
-      uses: actions/upload-artifact@v4
+       uses: actions/upload-artifact@v4
       with:
         name: junit-test-results
         path: target/surefire-reports
@@ -89,27 +89,22 @@ on:
 
                 # Only run on pushes to main
                 if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+        - uses: actions/checkout@v4
+          name: Set up Docker Buildx 
+           docker/setup-buildx-action@v3
+         steps:
+              - name: Log in to Docker Hub
+                uses: docker/login-action@v3
+                with:
+                  username: ${{ secrets.DOCKERHUB_USERNAME }}
+                  password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-                steps:
-                - uses: actions/checkout@v4
-
-                - name: Set up Docker Buildx
-              uses: docker/setup-buildx-action@v3
-
-            steps:
-                - name: Log in to Docker Hub
-            uses: docker/login-action@v3
-            with:
-              username: ${{ secrets.DOCKERHUB_USERNAME }}
-              password: ${{ secrets.DOCKERHUB_TOKEN }}
-            
-              steps: 
-                - name: Build and push Docker image
-            uses: docker/build-push-action@v6
-            with:
-              context: .
-              file: ./Dockerfile
-              push: true
-              tags: ${{ secrets.DOCKERHUB_USERNAME }}docnjila/task-app:
-
-    
+                  steps:
+                  - name: Build and push Docker image
+                  uses: docker/build-push-action@v6
+                  with:
+                    context: .
+                    file: ./Dockerfile
+                    push: true
+                    tags: -${{ secrets.DOCKERHUB_USERNAME }}/task-app: latest
