@@ -110,6 +110,6 @@ on:
               context: .
               file: ./Dockerfile
               push: true
-              tags: ${{ secrets.DOCKERHUB_USERNAME }}/task-app: latest
+              tags: ${{ secrets.DOCKERHUB_USERNAME }}docnjila/task-app:
 
     
