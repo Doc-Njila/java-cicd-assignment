@@ -48,7 +48,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
-            #<!-- JaCoCo: generates a coverage report under target/site/jacoco -->
+            <!-- JaCoCo: generates a coverage report under target/site/jacoco -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -72,7 +72,7 @@
                       TODO (Task 4): Uncomment this execution to fail the build when line
                       coverage drops below the threshold defined in ${coverage.minimum}.
                       Then make your CI job run `mvn verify` so the gate is enforced.
-
+                    -->
                     <execution>
                         <id>coverage-check</id>
                         <phase>verify</phase>
@@ -94,7 +94,7 @@
                             </rules>
                         </configuration>
                     </execution>
-                    -->
+                    
                 </executions>
             </plugin>
 
